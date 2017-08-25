@@ -80,7 +80,6 @@ process.nextTick(function () {
   if (!fs.existsSync('esnext/compilers')) {
     fs.mkdirSync('esnext/compilers');
   }
-  require('closurecompiler'); // not sure if this is actually needed or not
   var babel       = require('babel-core');
   var traceur     = require('traceur');
   var esdown      = require('esdown');
@@ -269,7 +268,7 @@ process.nextTick(function () {
         fs.writeFileSync(fpath, code);
         var output;
         try {
-          output = "" + child_process.execSync('node_modules/closurecompiler/bin/ccjs ' +
+          output = "" + child_process.execSync('./node_modules/.bin/google-closure-compiler-js ' +
             fpath +
             ' --language_in=ECMASCRIPT6 --language_out=ECMASCRIPT5 --rewrite_polyfills'
           );
@@ -548,7 +547,7 @@ function dataToHtml(skeleton, rawBrowsers, tests, compiler) {
     body.append(testRow);
     // If this row has a different category to the last, add a title <tr> before it.
     if (t.category && (!testNum || t.category !== tests[testNum-1].category)) {
-      testRow.before('<tr class="category"><td colspan="' + (Object.keys(browsers).length+2) + '">' + capitalise(t.category) + '</td></tr>');
+      testRow.before('<tr class="category"><td colspan="' + (Object.keys(browsers).length+3) + '">' + capitalise(t.category) + '</td></tr>');
     }
 
     // Function to print out a single <td> result cell.

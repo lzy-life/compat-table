@@ -20,7 +20,7 @@
     ]
   },
   "babel": {
-    "full": "Babel 6.5 + core-js 2.4",
+    "full": "Babel 6.5 + core-js 2.5",
     "short": "Babel +<br><nobr>core-js</nobr>",
     "platformtype": "compiler",
     "note_id": "babel-optional",
@@ -33,7 +33,7 @@
     ]
   },
   "closure": {
-    "full": "Closure Compiler v20161024",
+    "full": "Closure Compiler v20170806",
     "short": "Closure",
     "platformtype": "compiler",
     "obsolete": false,
@@ -53,7 +53,7 @@
     ]
   },
   "typescript": {
-    "full": "TypeScript 1.8 + core-js 2.4",
+    "full": "TypeScript 1.8 + core-js 2.5",
     "short": "Type-<br />Script +<br /><nobr>core-js</nobr>",
     "platformtype": "compiler",
     "obsolete": false,
@@ -90,53 +90,80 @@
       "es2016plus"
     ]
   },
-  "konq43": {
+  "konq4_3": {
     "full": "Konqueror 4.3",
     "family": "KJS",
     "short": "Konq 4.3",
-    "obsolete": true,
+    "obsolete": "very",
     "test_suites": [
       "es5"
     ]
   },
-  "konq44": {
+  "konq4_4": {
     "full": "Konqueror 4.4",
-    "short": "Konq 4.4",
     "family": "KJS",
-    "obsolete": true,
+    "short": "Konq 4.4",
+    "obsolete": "very",
     "test_suites": [
       "es5",
       "non-standard"
     ]
   },
-  "konq49": {
+  "konq4_9": {
     "full": "Konqueror 4.9",
     "family": "KJS",
     "short": "Konq 4.9",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "konq4_11": {
+    "full": "Konqueror 4.11",
+    "family": "KJS",
+    "short": "Konq 4.11",
+    "release": "2013-08-14",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "konq4_12": {
+    "full": "Konqueror 4.12",
+    "family": "KJS",
+    "short": "Konq 4.12",
+    "release": "2013-12-18",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "konq4_13": {
+    "full": "Konqueror 4.13",
+    "family": "KJS",
+    "short": "Konq 4.13",
+    "release": "2014-04-16",
     "obsolete": true,
     "test_suites": [
       "es5",
       "non-standard"
     ]
   },
-  "konq413": {
-    "full": "Konqueror 4.13",
-    "family": "KJS",
-    "short": "Konq 4.13",
-    "obsolete": true,
-    "test_suites": [
-      "es5"
-    ]
-  },
-  "konq414": {
+  "konq4_14": {
     "full": "Konqueror 4.14",
-    "short": "KQ<br>4.14",
     "family": "KJS",
+    "short": "Konq 4.14",
+    "release": "2014-08-20",
+    "obsolete": false,
     "note_id": "khtml",
     "note_html": "Results are only applicable for the KHTML rendering engine.",
     "test_suites": [
       "es5",
-      "es6"
+      "es6",
+      "non-standard"
     ]
   },
   "ie7": {
@@ -144,11 +171,10 @@
     "family": "Chakra",
     "short": "IE 7",
     "release": "2006-10-18",
-    "obsolete": true,
+    "retire": "2016-01-12",
+    "obsolete": "very",
     "test_suites": [
       "es5",
-      "es6",
-      "esnext",
       "non-standard"
     ]
   },
@@ -157,11 +183,11 @@
     "family": "Chakra",
     "short": "IE 8",
     "release": "2009-03-19",
+    "retire": "2016-01-12",
     "obsolete": true,
     "test_suites": [
       "es5",
-      "es6",
-      "esnext",
+      "esintl",
       "non-standard"
     ]
   },
@@ -170,14 +196,28 @@
     "family": "Chakra",
     "short": "IE 9",
     "release": "2011-03-14",
-    "obsolete": true
+    "retire": "2016-01-12",
+    "obsolete": true,
+    "test_suites": [
+      "es5",
+      "esintl",
+      "non-standard"
+    ]
   },
   "ie10": {
     "full": "Internet Explorer",
     "family": "Chakra",
     "short": "IE 10",
     "release": "2012-10-26",
-    "obsolete": true
+    "retire": "2016-01-12",
+    "obsolete": true,
+    "test_suites": [
+      "es5",
+      "es6",
+      "es2016plus",
+      "esintl",
+      "non-standard"
+    ]
   },
   "ie11": {
     "full": "Internet Explorer",
@@ -191,30 +231,34 @@
     "family": "Chakra",
     "short": "Edge 12",
     "release": "2015-07-15",
-    "obsolete": true,
-    "note_id": "edge-experimental-flag",
-    "note_html": "Flagged features have to be enabled via \"Enable experimental Javascript features\" setting under about:flags"
+    "obsolete": true
   },
   "edge13": {
     "full": "Microsoft Edge",
     "family": "Chakra",
     "short": "Edge 13",
     "release": "2015-11-05",
-    "obsolete": true,
-    "note_id": "edge-experimental-flag"
+    "obsolete": true
   },
   "edge14": {
     "full": "Microsoft Edge",
     "family": "Chakra",
     "short": "Edge 14",
     "release": "2016-08-02",
-    "note_id": "edge-experimental-flag"
+    "obsolete": false
   },
   "edge15": {
     "full": "Microsoft Edge",
     "family": "Chakra",
     "short": "Edge 15",
-    "note_id": "edge-experimental-flag"
+    "release": "2017-04-11",
+    "obsolete": false
+  },
+  "edge16": {
+    "full": "Microsoft Edge",
+    "family": "Chakra",
+    "short": "Edge 16 Preview",
+    "unstable": true
   },
   "firefox1": {
     "full": "Firefox",
@@ -537,7 +581,7 @@
     "short": "FF 38 ESR",
     "release": "2015-05-12",
     "retire": "2016-06-07",
-    "obsolete": true
+    "obsolete": "very"
   },
   "firefox39": {
     "full": "Firefox",
@@ -592,8 +636,8 @@
     "family": "SpiderMonkey",
     "short": "FF 45 ESR",
     "release": "2016-03-08",
-    "retire": "2017-08-08",
-    "obsolete": false
+    "retire": "2017-06-13",
+    "obsolete": true
   },
   "firefox46": {
     "full": "Firefox",
@@ -601,7 +645,7 @@
     "short": "FF 46",
     "release": "2016-04-26",
     "retire": "2016-06-07",
-    "obsolete": true
+    "obsolete": "very"
   },
   "firefox47": {
     "full": "Firefox",
@@ -609,7 +653,7 @@
     "short": "FF 47",
     "release": "2016-06-07",
     "retire": "2016-08-02",
-    "obsolete": true
+    "obsolete": "very"
   },
   "firefox48": {
     "full": "Firefox",
@@ -648,6 +692,7 @@
     "family": "SpiderMonkey",
     "short": "FF 52 ESR",
     "release": "2017-03-07",
+    "retire": "2018-06-26",
     "obsolete": false
   },
   "firefox53": {
@@ -656,61 +701,245 @@
     "short": "FF 53",
     "release": "2017-04-19",
     "retire": "2017-06-13",
-    "obsolete": false
+    "obsolete": true
   },
   "firefox54": {
     "full": "Firefox",
     "family": "SpiderMonkey",
-    "short": "FF 54 Beta",
+    "short": "FF 54",
     "release": "2017-06-13",
     "retire": "2017-08-08",
-    "unstable": true
+    "obsolete": true
   },
   "firefox55": {
     "full": "Firefox",
     "family": "SpiderMonkey",
-    "short": "FF 55 Nightly",
+    "short": "FF 55",
     "release": "2017-08-08",
-    "retire": "2017-26-09",
+    "retire": "2017-09-26",
+    "obsolete": false
+  },
+  "firefox56": {
+    "full": "Firefox",
+    "family": "SpiderMonkey",
+    "short": "FF 56 Beta",
+    "release": "2017-09-26",
+    "retire": "2017-11-14",
     "unstable": true
+  },
+  "firefox57": {
+    "full": "Firefox",
+    "family": "SpiderMonkey",
+    "short": "FF 57 Nightly",
+    "release": "2017-11-14",
+    "retire": "2018-01-16",
+    "unstable": true
+  },
+  "opera7": {
+    "full": "Opera 7",
+    "family": "Linear B",
+    "short": "OP 7",
+    "release": "2003-01-28",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera7_5": {
+    "full": "Opera 7.5",
+    "family": "Linear B",
+    "short": "OP 7.5",
+    "release": "2004",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera8": {
+    "full": "Opera 8",
+    "family": "Linear B",
+    "short": "OP 8",
+    "release": "2005-04-19",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera8_5": {
+    "full": "Opera 8.5",
+    "family": "Linear B",
+    "short": "OP 8.5",
+    "release": "2005-09-20",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera9": {
+    "full": "Opera 9",
+    "family": "Linear B",
+    "short": "OP 9",
+    "release": "2006-06-20",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera9_1": {
+    "full": "Opera 9.1",
+    "family": "Linear B",
+    "short": "OP 9.1",
+    "release": "2006",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera9_2": {
+    "full": "Opera 9.2",
+    "family": "Linear B",
+    "short": "OP 9.2",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera9_5": {
+    "full": "Opera 9.5",
+    "family": "Futhark",
+    "short": "OP 9.5",
+    "release": "2008-06-12",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera10": {
+    "full": "Opera 10",
+    "family": "Futhark",
+    "short": "OP 10",
+    "release": "2009-09-01",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
+    ]
   },
   "opera10_10": {
     "full": "Opera 10.10",
-    "family": "Carakan",
+    "family": "Futhark",
     "short": "OP 10.1",
-    "obsolete": true,
+    "obsolete": "very",
     "test_suites": [
-      "es5"
+      "es5",
+      "non-standard"
+    ]
+  },
+  "opera10_20": {
+    "full": "Opera 10.20",
+    "family": "Futhark",
+    "short": "OP 10.2",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "non-standard"
     ]
   },
   "opera10_50": {
-    "full": "Opera 10.50, Opera 10.62 (build 8437), Opera 10.70 (build 9044), Opera 11 (build 1156), Opera 11.10 (build 2048), Opera 11.11 (build 2109), Opera 11.50 (build 1074)",
+    "full": "Opera 10.50",
     "family": "Carakan",
-    "short": "OP 10.50-11.50",
-    "obsolete": true,
+    "short": "OP 10.5",
+    "obsolete": "very",
     "test_suites": [
-      "es5"
+      "es5",
+      "es6",
+      "esintl",
+      "non-standard"
+    ]
+  },
+  "opera10_60": {
+    "full": "Opera 10.60",
+    "family": "Carakan",
+    "short": "OP 10.6",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6",
+      "esintl",
+      "non-standard"
+    ]
+  },
+  "opera11": {
+    "full": "Opera 11",
+    "family": "Carakan",
+    "short": "OP 11",
+    "release": "2010-12-16",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6",
+      "esintl",
+      "non-standard"
+    ]
+  },
+  "opera11_10": {
+    "full": "Opera 11.10",
+    "family": "Carakan",
+    "short": "OP 11.1",
+    "release": "2011-04-11",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6",
+      "esintl",
+      "non-standard"
+    ]
+  },
+  "opera11_50": {
+    "full": "Opera 11.50",
+    "family": "Carakan",
+    "short": "OP 11.5",
+    "release": "2011-06-28",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6",
+      "esintl",
+      "non-standard"
     ]
   },
   "opera12": {
     "full": "Opera 12",
     "family": "Carakan",
     "short": "OP 12",
-    "obsolete": true,
+    "release": "2012-06-14",
+    "obsolete": "very",
     "test_suites": [
       "es5",
-      "es6"
+      "es6",
+      "esintl",
+      "non-standard"
     ]
   },
   "opera12_10": {
-    "full": "Opera 12.15",
+    "full": "Opera 12.10",
     "family": "Carakan",
     "short": "OP 12.10",
+    "release": "2012-11-05",
     "obsolete": true,
     "test_suites": [
       "es5",
       "es6",
-      "esintl"
+      "esintl",
+      "non-standard"
     ]
   },
   "chrome1": {
@@ -1161,7 +1390,7 @@
     "short": "CH 50,<br>OP&nbsp;37",
     "release": "2016-04-13",
     "retire": "2016-06-01",
-    "obsolete": true,
+    "obsolete": "very",
     "note_id": "experimental-flag"
   },
   "chrome51": {
@@ -1170,7 +1399,7 @@
     "short": "CH 51,<br>OP&nbsp;38",
     "release": "2016-05-25",
     "retire": "2016-07-27",
-    "obsolete": true,
+    "obsolete": "very",
     "note_id": "experimental-flag"
   },
   "chrome52": {
@@ -1196,6 +1425,7 @@
     "family": "V8",
     "short": "CH&nbsp;54,<br>OP&nbsp;41",
     "release": "2016-10-12",
+    "retire": "2016-12-06",
     "note_id": "experimental-flag",
     "obsolete": true
   },
@@ -1203,6 +1433,8 @@
     "full": "Chrome, Opera",
     "family": "V8",
     "short": "CH&nbsp;55,<br>OP&nbsp;42",
+    "release": "2016-12-01",
+    "retire": "2017-02-01",
     "note_id": "experimental-flag",
     "obsolete": true
   },
@@ -1210,6 +1442,8 @@
     "full": "Chrome, Opera",
     "family": "V8",
     "short": "CH&nbsp;56,<br>OP&nbsp;43",
+    "release": "2017-01-25",
+    "retire": "2017-03-16",
     "note_id": "experimental-flag",
     "obsolete": true
   },
@@ -1217,6 +1451,8 @@
     "full": "Chrome, Opera",
     "family": "V8",
     "short": "CH&nbsp;57,<br>OP&nbsp;44",
+    "release": "2017-03-09",
+    "retire": "2017-04-25",
     "note_id": "experimental-flag",
     "obsolete": true
   },
@@ -1224,102 +1460,193 @@
     "full": "Chrome, Opera",
     "family": "V8",
     "short": "CH&nbsp;58,<br>OP&nbsp;45",
+    "release": "2017-04-19",
+    "retire": "2017-06-06",
     "note_id": "experimental-flag",
-    "obsolete": false
+    "obsolete": true
   },
   "chrome59": {
     "full": "Chrome, Opera",
     "family": "V8",
     "short": "CH&nbsp;59,<br>OP&nbsp;46",
+    "release": "2017-06-05",
     "note_id": "experimental-flag",
-    "unstable": true
+    "obsolete": true
   },
   "chrome60": {
     "full": "Chrome, Opera",
     "family": "V8",
     "short": "CH&nbsp;60,<br>OP&nbsp;47",
+    "release": "2017-07-25",
+    "note_id": "experimental-flag",
+    "obsolete": false
+  },
+  "chrome61": {
+    "full": "Chrome, Opera",
+    "family": "V8",
+    "short": "CH&nbsp;61,<br>OP&nbsp;48",
     "note_id": "experimental-flag",
     "unstable": true
   },
+  "chrome62": {
+    "full": "Chrome, Opera",
+    "family": "V8",
+    "short": "CH&nbsp;62,<br>OP&nbsp;49",
+    "note_id": "experimental-flag",
+    "unstable": true
+  },
+  "safari1": {
+    "full": "Safari 1.0",
+    "family": "JavaScriptCore",
+    "short": "SF 1",
+    "release": "2003-06-23",
+    "obsolete": "very"
+  },
+  "safari1_1": {
+    "full": "Safari 1.1",
+    "family": "JavaScriptCore",
+    "short": "SF 1.1",
+    "release": "2003-10-24",
+    "obsolete": "very"
+  },
+  "safari1_2": {
+    "full": "Safari 1.2",
+    "family": "JavaScriptCore",
+    "short": "SF 1.2",
+    "release": "2004-02-02",
+    "obsolete": "very"
+  },
+  "safari1_3": {
+    "full": "Safari 1.3",
+    "family": "JavaScriptCore",
+    "short": "SF 1.3",
+    "release": "2005-04-15",
+    "obsolete": "very"
+  },
+  "safari2": {
+    "full": "Safari 2",
+    "family": "JavaScriptCore",
+    "short": "SF 2",
+    "release": "2005-04-29",
+    "obsolete": "very"
+  },
   "safari3": {
+    "full": "Safari 3",
+    "family": "JavaScriptCore",
+    "short": "SF 3",
+    "release": "2007-06-11",
+    "obsolete": "very"
+  },
+  "safari3_1": {
+    "full": "Safari 3.1",
+    "family": "JavaScriptCore",
+    "short": "SF 3.1",
+    "release": "2008-03-18",
+    "obsolete": "very"
+  },
+  "safari3_2": {
     "full": "Safari 3.2",
     "family": "JavaScriptCore",
     "short": "SF 3.2",
+    "release": "2008-11-13",
     "obsolete": "very"
   },
   "safari4": {
-    "full": "Safari 4.0.5",
+    "full": "Safari 4",
     "family": "JavaScriptCore",
     "short": "SF 4",
+    "release": "2009-06-8",
+    "obsolete": "very"
+  },
+  "safari4_1": {
+    "full": "Safari 4.1",
+    "family": "JavaScriptCore",
+    "short": "SF 3.1",
+    "release": "2010-06-07",
     "obsolete": "very"
   },
   "safari5": {
-    "full": "Safari 5.0.5",
+    "full": "Safari 5",
     "family": "JavaScriptCore",
     "short": "SF 5",
-    "obsolete": true,
-    "test_suites": [
-      "es5",
-      "es6",
-      "esnext",
-      "non-standard"
-    ]
+    "release": "2010-06-7",
+    "obsolete": "very"
   },
-  "safari51": {
-    "full": "Safari",
+  "safari5_1": {
+    "full": "Safari 5.1",
     "family": "JavaScriptCore",
-    "short": "SF<br />5.1",
-    "obsolete": true
+    "short": "SF 5.1",
+    "release": "2011-07-20",
+    "obsolete": "very"
   },
   "safari6": {
-    "full": "Safari",
+    "full": "Safari 6",
     "family": "JavaScriptCore",
     "short": "SF 6",
-    "obsolete": true
+    "release": "2012-07-25",
+    "obsolete": "very"
   },
   "safari7": {
-    "full": "Safari",
+    "full": "Safari 7",
     "family": "JavaScriptCore",
-    "short": "SF 6.1,<br>SF 7",
-    "obsolete": true
+    "short": "SF 7",
+    "release": "2013-10-22",
+    "obsolete": "very"
   },
-  "safari71_8": {
-    "full": "Safari",
+  "safari7_1": {
+    "full": "Safari 7.1",
     "family": "JavaScriptCore",
-    "short": "SF 7.1,<br>SF 8",
+    "short": "SF 7.1",
+    "release": "2014-09-18",
+    "obsolete": "very"
+  },
+  "safari8": {
+    "full": "Safari 8",
+    "family": "JavaScriptCore",
+    "short": "SF 8",
+    "release": "2014-10-16",
     "obsolete": true
   },
   "safari9": {
-    "full": "Safari",
+    "full": "Safari 9",
     "family": "JavaScriptCore",
     "short": "SF 9",
+    "release": "2015-09-30",
     "obsolete": true
   },
   "safari10": {
-    "full": "Safari",
+    "full": "Safari 10",
     "family": "JavaScriptCore",
     "short": "SF 10",
+    "release": "2016-09-20",
     "obsolete": false
   },
   "safari10_1": {
-    "full": "Safari",
+    "full": "Safari 10.1",
     "family": "JavaScriptCore",
     "short": "SF 10.1",
+    "release": "2017-03-27",
     "obsolete": false
   },
+  "safari11": {
+    "full": "Safari 11",
+    "family": "JavaScriptCore",
+    "short": "SF 11",
+    "unstable": true
+  },
   "safaritp": {
-    "full": "Safari Technology Preview Release 27",
+    "full": "Safari Technology Preview Release 36",
     "family": "JavaScriptCore",
     "short": "SF TP",
     "unstable": true
   },
   "webkit": {
-    "full": "Webkit r214532 (March 29, 2017)",
+    "full": "Webkit r219218 (July 6, 2017)",
     "family": "JavaScriptCore",
     "short": "WK",
     "unstable": true
   },
-  "rhino17": {
+  "rhino1_7": {
     "full": "Rhino 1.7",
     "short": "Rhino 1.7",
     "platformtype": "engine",
@@ -1374,7 +1701,7 @@
       "es6"
     ]
   },
-  "node010": {
+  "node0_10": {
     "full": "Node.js",
     "family": "Node.js",
     "short": "Node 0.10",
@@ -1389,7 +1716,7 @@
       "esintl"
     ]
   },
-  "node012": {
+  "node0_12": {
     "full": "Node.js",
     "family": "Node.js",
     "short": "Node 0.12",
@@ -1462,7 +1789,7 @@
       "esintl"
     ]
   },
-  "node65": {
+  "node6_5": {
     "full": "Node.js",
     "family": "Node.js",
     "short": "Node &gt;=6.5 &lt;7",
@@ -1492,13 +1819,43 @@
       "esintl"
     ]
   },
-  "node76": {
+  "node7_6": {
     "full": "Node.js",
     "family": "Node.js",
     "short": "Node &gt;=7.6 &lt;8",
     "platformtype": "engine",
     "note_id": "harmony-flag",
     "equals": "chrome55",
+    "obsolete": true,
+    "test_suites": [
+      "es6",
+      "es2016plus",
+      "esnext",
+      "esintl"
+    ]
+  },
+  "node8": {
+    "full": "Node.js",
+    "family": "Node.js",
+    "short": "Node 8.0-8.2",
+    "platformtype": "engine",
+    "note_id": "harmony-flag",
+    "equals": "chrome58",
+    "obsolete": true,
+    "test_suites": [
+      "es6",
+      "es2016plus",
+      "esnext",
+      "esintl"
+    ]
+  },
+  "node8_3": {
+    "full": "Node.js",
+    "family": "Node.js",
+    "short": "Node &gt;=8.3 &lt;9",
+    "platformtype": "engine",
+    "note_id": "harmony-flag",
+    "equals": "chrome60",
     "obsolete": false,
     "test_suites": [
       "es6",
@@ -1507,79 +1864,296 @@
       "esintl"
     ]
   },
-  "duktape20": {
+  "duktape1_0": {
+    "full": "Duktape 1.0",
+    "family": "Duktape",
+    "short": "DUK 1.0",
+    "platformtype": "engine",
+    "release": "2014-10-26",
+    "retire": "2015-01-09",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_1": {
+    "full": "Duktape 1.1",
+    "family": "Duktape",
+    "short": "DUK 1.1",
+    "platformtype": "engine",
+    "release": "2015-01-09",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_2": {
+    "full": "Duktape 1.2",
+    "family": "Duktape",
+    "short": "DUK 1.2",
+    "platformtype": "engine",
+    "release": "2015-04-05",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_3": {
+    "full": "Duktape 1.3",
+    "family": "Duktape",
+    "short": "DUK 1.3",
+    "platformtype": "engine",
+    "release": "2015-09-12",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_4": {
+    "full": "Duktape 1.4",
+    "family": "Duktape",
+    "short": "DUK 1.4",
+    "platformtype": "engine",
+    "release": "2016-01-10",
+    "obsolete": "very",
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_5": {
+    "full": "Duktape 1.5",
+    "family": "Duktape",
+    "short": "DUK 1.5",
+    "platformtype": "engine",
+    "release": "2016-05-03",
+    "retire": "2016-12-12",
+    "obsolete": true,
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_6": {
+    "full": "Duktape 1.6",
+    "family": "Duktape",
+    "short": "DUK 1.6",
+    "platformtype": "engine",
+    "release": "2016-12-12",
+    "retire": "2017-03-20",
+    "obsolete": true,
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_7": {
+    "full": "Duktape 1.7",
+    "family": "Duktape",
+    "short": "DUK 1.7",
+    "platformtype": "engine",
+    "release": "2017-03-20",
+    "retire": "2017-08-02",
+    "obsolete": true,
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape1_8": {
+    "full": "Duktape 1.8",
+    "family": "Duktape",
+    "short": "DUK 1.8",
+    "platformtype": "engine",
+    "release": "2017-08-02",
+    "obsolete": false,
+    "test_suites": [
+      "es5",
+      "es6"
+    ]
+  },
+  "duktape2_0": {
     "full": "Duktape 2.0",
     "family": "Duktape",
-    "short": "DUK 20",
+    "short": "DUK 2.0",
     "platformtype": "engine",
-    "obsolete": false
+    "release": "2017-01-17",
+    "retire": "2017-04-15",
+    "obsolete": true
   },
-  "duktape21": {
+  "duktape2_1": {
     "full": "Duktape 2.1",
     "family": "Duktape",
-    "short": "DUK 21",
+    "short": "DUK 2.1",
     "platformtype": "engine",
+    "release": "2017-04-15",
     "obsolete": false
   },
-  "android40": {
-    "full": "Android Browser",
+  "duktape2_2": {
+    "full": "Duktape 2.2",
+    "family": "Duktape",
+    "short": "DUK 2.2",
+    "platformtype": "engine",
+    "unstable": true
+  },
+  "android1_5": {
+    "full": "Android Browser 1.5 (Cupcake)",
+    "family": "Android Browser",
+    "short": "AN 1.5",
+    "platformtype": "mobile",
+    "release": "2009-04-30",
+    "obsolete": "very"
+  },
+  "android1_6": {
+    "full": "Android Browser 1.6 (Donut)",
+    "family": "Android Browser",
+    "short": "AN 1.6",
+    "platformtype": "mobile",
+    "release": "2009-09-15",
+    "obsolete": "very"
+  },
+  "android2_0": {
+    "full": "Android Browser 2.0 (Eclair)",
+    "family": "Android Browser",
+    "short": "AN 2.0",
+    "platformtype": "mobile",
+    "release": "2009-10-26",
+    "obsolete": "very"
+  },
+  "android2_1": {
+    "full": "Android Browser 2.1 (Eclair)",
+    "family": "Android Browser",
+    "short": "AN 2.1",
+    "platformtype": "mobile",
+    "release": "2010-01-12",
+    "obsolete": "very"
+  },
+  "android2_2": {
+    "full": "Android Browser 2.2 (Froyo)",
+    "family": "Android Browser",
+    "short": "AN 2.2",
+    "platformtype": "mobile",
+    "release": "2010-05-20",
+    "obsolete": "very"
+  },
+  "android2_3": {
+    "full": "Android Browser 2.3 (Gingerbread)",
+    "family": "Android Browser",
+    "short": "AN 2.3",
+    "platformtype": "mobile",
+    "release": "2010-12-06",
+    "obsolete": "very"
+  },
+  "android3_0": {
+    "full": "Android Browser 3.0 (Honeycomb)",
+    "family": "Android Browser",
+    "short": "AN 3.0",
+    "platformtype": "mobile",
+    "release": "2011-02-22",
+    "obsolete": "very"
+  },
+  "android3_1": {
+    "full": "Android Browser 3.1 (Honeycomb)",
+    "family": "Android Browser",
+    "short": "AN 3.1",
+    "platformtype": "mobile",
+    "release": "2011-05-10",
+    "obsolete": "very"
+  },
+  "android3_2": {
+    "full": "Android Browser 3.2 (Honeycomb)",
+    "family": "Android Browser",
+    "short": "AN 3.2",
+    "platformtype": "mobile",
+    "release": "2011-07-15",
+    "obsolete": "very"
+  },
+  "android4_0": {
+    "full": "Android Browser 4.0 (Ice Cream Sandwich)",
+    "family": "Android Browser",
     "short": "AN 4.0",
     "platformtype": "mobile",
-    "obsolete": true
+    "release": "2011-10-18",
+    "obsolete": "very"
   },
-  "android41": {
-    "full": "Android Browser",
+  "android4_1": {
+    "full": "Android Browser 4.1 (Jellybean)",
+    "family": "Android Browser",
     "short": "AN 4.1",
     "platformtype": "mobile",
-    "obsolete": true
+    "release": "2012-07-09",
+    "obsolete": "very"
   },
-  "android42": {
-    "full": "Android Browser",
+  "android4_2": {
+    "full": "Android Browser 4.2 (Jellybean)",
+    "family": "Android Browser",
     "short": "AN 4.2",
     "platformtype": "mobile",
-    "obsolete": true
+    "release": "2012-11-13",
+    "obsolete": "very"
   },
-  "android43": {
-    "full": "Android Browser",
+  "android4_3": {
+    "full": "Android Browser 4.3 (Jellybean)",
+    "family": "Android Browser",
     "short": "AN 4.3",
     "platformtype": "mobile",
-    "obsolete": true
+    "release": "2013-07-24",
+    "obsolete": "very"
   },
-  "android44": {
-    "full": "Android Browser",
+  "android4_4": {
+    "full": "Android Browser 4.4 (KitKat)",
+    "family": "Android Browser",
     "short": "AN 4.4",
     "platformtype": "mobile",
     "equals": "chrome30",
-    "ignore_flagged": true
+    "release": "2013-10-31",
+    "obsolete": true
   },
-  "android50": {
-    "full": "Android Browser",
-    "short": "AN 5.0",
+  "android4_4_3": {
+    "full": "Android Browser 4.4.3 (KitKat)",
+    "family": "Android Browser",
+    "short": "AN 4.4.3",
     "platformtype": "mobile",
-    "equals": "chrome37",
-    "ignore_flagged": true
+    "equals": "chrome33",
+    "release": "2014-06-02",
+    "obsolete": true
   },
-  "android51": {
-    "full": "Android Browser",
-    "short": "AN 5.1",
+  "ios4": {
+    "full": "iOS Safari",
+    "family": "iOS Safari",
+    "short": "iOS 4",
     "platformtype": "mobile",
-    "equals": "chrome39",
-    "ignore_flagged": true
+    "release": "2010-21-06",
+    "obsolete": "very"
   },
-  "ios51": {
+  "ios5": {
+    "full": "iOS Safari",
+    "family": "iOS Safari",
+    "short": "iOS 5",
+    "platformtype": "mobile",
+    "release": "2011-10-12",
+    "obsolete": "very"
+  },
+  "ios5_1": {
     "full": "iOS Safari",
     "family": "iOS Safari",
     "short": "iOS 5.1",
     "platformtype": "mobile",
-    "obsolete": true
+    "release": "2012-03-07",
+    "obsolete": "very"
   },
   "ios6": {
     "full": "iOS Safari",
     "family": "iOS Safari",
     "short": "iOS 6",
     "platformtype": "mobile",
-    "equals": "safari51",
-    "obsolete": true
+    "equals": "safari5_1",
+    "release": "2012-09-19",
+    "obsolete": "very"
   },
   "ios7": {
     "full": "iOS Safari",
@@ -1587,14 +2161,16 @@
     "short": "iOS 7",
     "platformtype": "mobile",
     "equals": "safari7",
-    "obsolete": true
+    "release": "2013-09-18",
+    "obsolete": "very"
   },
   "ios8": {
     "full": "iOS Safari",
     "family": "iOS Safari",
     "short": "iOS 8",
     "platformtype": "mobile",
-    "equals": "safari71_8",
+    "equals": "safari7_1",
+    "release": "2014-09-17",
     "obsolete": true
   },
   "ios9": {
@@ -1603,14 +2179,16 @@
     "short": "iOS 9",
     "platformtype": "mobile",
     "equals": "safari9",
-    "obsolete": false
+    "release": "2015-09-16",
+    "obsolete": true
   },
   "ios10": {
     "full": "iOS Safari",
     "family": "iOS Safari",
-    "short": "iOS 10.0-10.3",
+    "short": "iOS 10.0-10.2",
     "platformtype": "mobile",
     "equals": "safari10",
+    "release": "2016-09-16",
     "obsolete": false
   },
   "ios10_3": {
@@ -1619,6 +2197,15 @@
     "short": "iOS &gt;=10.3 &lt;11",
     "platformtype": "mobile",
     "equals": "safari10_1",
+    "release": "2017-03-27",
     "obsolete": false
+  },
+  "ios11": {
+    "full": "iOS Safari",
+    "family": "iOS Safari",
+    "short": "iOS 11",
+    "platformtype": "mobile",
+    "equals": "safari11",
+    "unstable": true
   }
 }

@@ -1,8 +1,10 @@
 var common = require('./data-common');
 
+var babel = common.babel;
 var typescript = common.typescript;
 var firefox = common.firefox;
 var chrome = common.chrome;
+var edge = common.edge;
 
 exports.name = 'ES Next';
 exports.target_file = 'esnext/index.html';
@@ -30,7 +32,8 @@ exports.tests = [
       */},
       res: {
         babel: true,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -41,7 +44,8 @@ exports.tests = [
       */},
       res: {
         babel: true,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       },
     },
   ],
@@ -50,7 +54,7 @@ exports.tests = [
   name: 'do expressions',
   category: STAGE1,
   significance: 'small',
-  spec: 'http://wiki.ecmascript.org/doku.php?id=strawman:do_expressions',
+  spec: 'https://gist.github.com/dherman/1c97dfb25179fa34a41b5fff040f9879',
   exec: function () {/*
     return do {
       let x = 23;
@@ -59,11 +63,12 @@ exports.tests = [
   */},
   res: {
     babel: true,
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
-  name: 'function.sent',
+  name: 'Generator function.sent Meta Property',
   category: STAGE2,
   significance: 'small',
   spec: 'https://github.com/allenwb/ESideas/blob/master/Generator%20metaproperty.md',
@@ -77,12 +82,13 @@ exports.tests = [
     return result === 'tromple';
   */},
   res: {
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
   name: 'SIMD (Single Instruction, Multiple Data)',
-  category: STAGE3,
+  category: STAGE1,
   significance: 'large',
   spec: 'https://tc39.github.io/ecmascript_simd/',
   mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD',
@@ -91,715 +97,916 @@ exports.tests = [
       name: 'basic support',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD',
       exec: function () {/*
+        simdFloatTypes=['Float32x4'];
+        simdBoolTypes=['Bool32x4','Bool16x8','Bool8x16'];
+        simdIntTypes=['Int32x4','Int16x8','Int8x16','Uint32x4','Uint16x8','Uint8x16'];
+        simd32bitFloatIntTypes=['Float32x4','Int32x4','Uint32x4'];
+        simdSmallIntTypes=['Int16x8','Int8x16','Uint16x8','Uint8x16'];
+        simdBoolIntTypes=simdBoolTypes.concat(simdIntTypes);
+        simdFloatIntTypes=simdFloatTypes.concat(simdIntTypes);
+        simdAllTypes=simdFloatTypes.concat(simdIntTypes,simdBoolTypes);
         return typeof SIMD !== 'undefined';
       */},
       res: {
-        edge12: "flagged",
+        edge12: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'Float32x4',
+      spec: 'https://tc39.github.io/ecmascript_simd/#float32x4',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32x4',
       exec: function(){/*
         return typeof SIMD.Float32x4 === 'function';
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'Int32x4',
+      spec: 'https://tc39.github.io/ecmascript_simd/#int32x4',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32x4',
       exec: function(){/*
         return typeof SIMD.Int32x4 === 'function';
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'Int16x8',
+      spec: 'https://tc39.github.io/ecmascript_simd/#int16x8',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16x8',
       exec: function(){/*
         return typeof SIMD.Int16x8 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'Int8x16',
+      spec: 'https://tc39.github.io/ecmascript_simd/#int8x16',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8x16',
       exec: function(){/*
         return typeof SIMD.Int8x16 === 'function';
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'Uint32x4',
+      spec: 'https://tc39.github.io/ecmascript_simd/#uint32x4',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32x4',
       exec: function(){/*
         return typeof SIMD.Uint32x4 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'Uint16x8',
+      spec: 'https://tc39.github.io/ecmascript_simd/#uint16x8',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16x8',
       exec: function(){/*
         return typeof SIMD.Uint16x8 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'Uint8x16',
+      spec: 'https://tc39.github.io/ecmascript_simd/#uint8x16',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8x16',
       exec: function(){/*
         return typeof SIMD.Uint8x16 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'Bool32x4',
+      spec: 'https://tc39.github.io/ecmascript_simd/#bool32x4',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Bool32x4',
       exec: function(){/*
         return typeof SIMD.Bool32x4 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'Bool16x8',
+      spec: 'https://tc39.github.io/ecmascript_simd/#bool16x8',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Bool16x8',
       exec: function(){/*
         return typeof SIMD.Bool16x8 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'Bool8x16',
+      spec: 'https://tc39.github.io/ecmascript_simd/#bool8x16',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Bool8x16',
       exec: function(){/*
         return typeof SIMD.Bool8x16 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.abs',
+      name: 'SIMD.%floatType%.abs',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-abs',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/abs',
       exec: function(){/*
-        return typeof SIMD.Float32x4.abs === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].abs === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.add',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-add',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/add',
       exec: function(){/*
-        return typeof SIMD.Float32x4.add === 'function' && typeof SIMD.Int32x4.add === 'function' && typeof SIMD.Uint32x4.add === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].add === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%integerType%.addSaturate',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-add-saturate',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/addSaturate',
       exec: function(){/*
-        return typeof SIMD.Int16x8.addSaturate === 'function' && typeof SIMD.Int8x16.addSaturate === 'function' && typeof SIMD.Uint16x8.addSaturate === 'function' && typeof SIMD.Uint8x16.addSaturate === 'function';
+        return simdSmallIntTypes.every(function(type){
+          return typeof SIMD[type].addSaturate === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%booleanType%.and',
+      name: 'SIMD.%type%.and',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-and',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/and',
       exec: function(){/*
-        return typeof SIMD.Bool32x4.and === 'function' && typeof SIMD.Bool16x8.and === 'function' && typeof SIMD.Bool8x16.and === 'function';
+        return simdBoolIntTypes.every(function(type){
+          return typeof SIMD[type].and === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%booleanType%.anyTrue',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-any-true',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/anyTrue',
       exec: function(){/*
-        return typeof SIMD.Bool32x4.anyTrue === 'function' && typeof SIMD.Bool16x8.anyTrue === 'function' && typeof SIMD.Bool8x16.anyTrue === 'function';
+        return simdBoolTypes.every(function(type){
+          return typeof SIMD[type].anyTrue === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%booleanType%.allTrue',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-all-true',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/allTrue',
       exec: function(){/*
-        return typeof SIMD.Bool32x4.allTrue === 'function' && typeof SIMD.Bool16x8.allTrue === 'function' && typeof SIMD.Bool8x16.allTrue === 'function';
+        return simdBoolTypes.every(function(type){
+          return typeof SIMD[type].allTrue === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.check',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-check',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/check',
       exec: function(){/*
-        return typeof SIMD.Float32x4.check === 'function';
+        return simdAllTypes.every(function(type){
+          return typeof SIMD[type].check === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.equal',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-equal',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/equal',
       exec: function(){/*
-        return typeof SIMD.Float32x4.equal === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].equal === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.extractLane',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-extract-lane',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/extractLane',
       exec: function(){/*
-        return typeof SIMD.Float32x4.extractLane === 'function';
+        return simdAllTypes.every(function(type){
+          return typeof SIMD[type].extractLane === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.greaterThan',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-greater-than',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/greaterThan',
       exec: function(){/*
-        return typeof SIMD.Float32x4.greaterThan === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].greaterThan === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.greaterThanOrEqual',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-greater-than-or-equal',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/greaterThanOrEqual',
       exec: function(){/*
-        return typeof SIMD.Float32x4.greaterThanOrEqual === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].greaterThanOrEqual === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.lessThan',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-less-than',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/lessThan',
       exec: function(){/*
-        return typeof SIMD.Float32x4.lessThan === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].lessThan === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.lessThanOrEqual',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-less-than-or-equal',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/lessThanOrEqual',
       exec: function(){/*
-        return typeof SIMD.Float32x4.lessThanOrEqual === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].lessThanOrEqual === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.mul',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-mul',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/mul',
       exec: function(){/*
-        return typeof SIMD.Float32x4.mul === 'function' && typeof SIMD.Int32x4.mul === 'function' && typeof SIMD.Uint32x4.mul === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].mul === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.div',
+      name: 'SIMD.%floatType%.div',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-div',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/div',
       exec: function(){/*
-        return typeof SIMD.Float32x4.div === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].div === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.load',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-load-function',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/load',
       exec: function(){/*
-        return typeof SIMD.Float32x4.load === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].load === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.load1',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/load',
       exec: function(){/*
-        return typeof SIMD.Float32x4.load1 === 'function';
+        return simd32bitFloatIntTypes.every(function(type){
+          return typeof SIMD[type].load1 === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.load2',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/load',
       exec: function(){/*
-        return typeof SIMD.Float32x4.load2 === 'function';
+        return simd32bitFloatIntTypes.every(function(type){
+          return typeof SIMD[type].load2 === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.load3',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/load',
       exec: function(){/*
-        return typeof SIMD.Float32x4.load3 === 'function';
+        return simd32bitFloatIntTypes.every(function(type){
+          return typeof SIMD[type].load3 === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.max',
+      name: 'SIMD.%floatType%.max',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-max',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/max',
       exec: function(){/*
-        return typeof SIMD.Float32x4.max === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].max === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.maxNum',
+      name: 'SIMD.%floatType%.maxNum',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-max-num',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/maxNum',
       exec: function(){/*
-        return typeof SIMD.Float32x4.maxNum === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].maxNum === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        edge15: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.min',
+      name: 'SIMD.%floatType%.min',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-min',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/min',
       exec: function(){/*
-        return typeof SIMD.Float32x4.min === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].min === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.minNum',
+      name: 'SIMD.%floatType%.minNum',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-min-num',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/minNum',
       exec: function(){/*
-        return typeof SIMD.Float32x4.minNum === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].minNum === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        edge15: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.neg',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-neg',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/neg',
       exec: function(){/*
-        return typeof SIMD.Float32x4.neg === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].neg === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%booleanType%.not',
+      name: 'SIMD.%type%.not',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-not',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/not',
       exec: function(){/*
-        return typeof SIMD.Bool32x4.not === 'function' && typeof SIMD.Bool16x8.not === 'function' && typeof SIMD.Bool8x16.not === 'function';
+        return simdBoolTypes.every(function(type){
+          return typeof SIMD[type].not === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.notEqual',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-not-equal',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/notEqual',
       exec: function(){/*
-        return typeof SIMD.Float32x4.notEqual === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].notEqual === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%booleanType%.or',
+      name: 'SIMD.%type%.or',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-or',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/or',
       exec: function(){/*
-        return typeof SIMD.Bool32x4.or === 'function' && typeof SIMD.Bool16x8.or === 'function' && typeof SIMD.Bool8x16.or === 'function';
+        return simdBoolIntTypes.every(function(type){
+          return typeof SIMD[type].or === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.reciprocalApproximation',
+      name: 'SIMD.%floatType%.reciprocalApproximation',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-reciprocal-approximation',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/reciprocalApproximation',
       exec: function(){/*
-        return typeof SIMD.Float32x4.reciprocalApproximation === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].reciprocalApproximation === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.reciprocalSqrtApproximation',
+      name: 'SIMD.%floatType%.reciprocalSqrtApproximation',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-reciprocal-sqrt-approximation',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/reciprocalSqrtApproximation',
       exec: function(){/*
-        return typeof SIMD.Float32x4.reciprocalSqrtApproximation === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].reciprocalSqrtApproximation === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.replaceLane',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-replace-lane',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/replaceLane',
       exec: function(){/*
-        return typeof SIMD.Float32x4.replaceLane === 'function';
+        return simdAllTypes.every(function(type){
+          return typeof SIMD[type].replaceLane === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.select',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-select',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/select',
       exec: function(){/*
-        return typeof SIMD.Float32x4.select === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].select === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%integerType%.shiftLeftByScalar',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-shift-left-by-scalar',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/shiftLeftByScalar',
       exec: function(){/*
-        return typeof SIMD.Int32x4.shiftLeftByScalar === 'function' && typeof SIMD.Int16x8.shiftLeftByScalar === 'function' && typeof SIMD.Int8x16.shiftLeftByScalar === 'function';
+        return simdIntTypes.every(function(type){
+          return typeof SIMD[type].shiftLeftByScalar === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%integerType%.shiftRightByScalar',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-shift-right-by-scalar',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/shiftRightByScalar',
       exec: function(){/*
-        return typeof SIMD.Int32x4.shiftRightByScalar === 'function' && typeof SIMD.Int16x8.shiftRightByScalar === 'function' && typeof SIMD.Int8x16.shiftRightByScalar === 'function';
+        return simdIntTypes.every(function(type){
+          return typeof SIMD[type].shiftRightByScalar === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.shuffle',
+      spec: 'https://tc39.github.io/ecmascript_simd/#shuffle',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/shuffle',
       exec: function(){/*
-        return typeof SIMD.Float32x4.shuffle === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].shuffle === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.splat',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-splat',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/splat',
       exec: function(){/*
-        return typeof SIMD.Float32x4.splat === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].splat === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%type%.sqrt',
+      name: 'SIMD.%floatType%.sqrt',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-sqrt',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/sqrt',
       exec: function(){/*
-        return typeof SIMD.Float32x4.sqrt === 'function';
+        return simdFloatTypes.every(function(type){
+          return typeof SIMD[type].sqrt === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.store',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-store-function',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/store',
       exec: function(){/*
-        return typeof SIMD.Float32x4.store === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].store === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.store1',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/store',
       exec: function(){/*
-        return typeof SIMD.Float32x4.store1 === 'function';
+        return simd32bitFloatIntTypes.every(function(type){
+          return typeof SIMD[type].store1 === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.store2',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/store',
       exec: function(){/*
-        return typeof SIMD.Float32x4.store2 === 'function';
+        return simd32bitFloatIntTypes.every(function(type){
+          return typeof SIMD[type].store2 === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.store3',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/store',
       exec: function(){/*
-        return typeof SIMD.Float32x4.store3 === 'function';
+        return simd32bitFloatIntTypes.every(function(type){
+          return typeof SIMD[type].store3 === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.sub',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-sub',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/sub',
       exec: function(){/*
-        return typeof SIMD.Float32x4.sub === 'function' && typeof SIMD.Int32x4.sub === 'function' && typeof SIMD.Uint32x4.sub === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].sub === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%integerType%.subSaturate',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-sub-saturate',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/subSaturate',
       exec: function(){/*
-        return typeof SIMD.Int16x8.subSaturate === 'function' && typeof SIMD.Int8x16.subSaturate === 'function';
+        return simdSmallIntTypes.every(function(type){
+          return typeof SIMD[type].subSaturate === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
       name: 'SIMD.%type%.swizzle',
+      spec: 'https://tc39.github.io/ecmascript_simd/#swizzle',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/swizzle',
       exec: function(){/*
-        return typeof SIMD.Float32x4.swizzle === 'function';
+        return simdFloatIntTypes.every(function(type){
+          return typeof SIMD[type].swizzle === 'function';
+        });
       */},
       res: {
-        edge13: "flagged",
+        edge13: edge.experimental,
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'SIMD.%booleanType%.xor',
+      name: 'SIMD.%type%.xor',
+      spec: 'https://tc39.github.io/ecmascript_simd/#simd-xor',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/xor',
       exec: function(){/*
-        return typeof SIMD.Bool32x4.xor === 'function' && typeof SIMD.Bool16x8.xor === 'function' && typeof SIMD.Bool8x16.xor === 'function';
+        return simdBoolIntTypes.every(function(type){
+          return typeof SIMD[type].xor === 'function';
+        });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
@@ -807,15 +1014,16 @@ exports.tests = [
       spec: 'https://tc39.github.io/ecmascript_simd/#simd-to-timd',
       mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD/fromFloat32x4Bits',
       exec: function(){/*
-        return 'Float32x4,Int32x4,Int8x16,Uint32x4,Uint16x8,Uint8x16'.split(',').every(function(type){
+        return ['Float32x4','Int32x4','Int8x16','Uint32x4','Uint16x8','Uint8x16'].every(function(type){
           return typeof SIMD.Int16x8['from' + type + 'Bits'] === 'function';
         });
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     },
     {
@@ -826,54 +1034,43 @@ exports.tests = [
         return typeof SIMD.Float32x4.fromInt32x4 === 'function' && typeof SIMD.Float32x4.fromUint32x4 === 'function' && typeof SIMD.Int32x4.fromFloat32x4 === 'function' && typeof SIMD.Uint32x4.fromFloat32x4 === 'function';
       */},
       res: {
+        firefox2: false,
         firefox48: firefox.nightly,
         chrome37: chrome.simd,
-        edge14: "flagged",
-        duktape20: false,
+        edge14: edge.experimental,
+        duktape2_0: false,
       }
     }
   ]
 },
 {
-  name: 'class decorators',
+  name: 'Class and Property Decorators',
   category: STAGE2,
   significance: 'medium',
-  spec: 'https://github.com/wycats/javascript-decorators',
-  exec: function(){/*
-    class A {
-      @nonconf
-      get B() {}
-    }
-    function nonconf(target, name, descriptor) {
-      descriptor.configurable = false;
-      return descriptor;
-    }
-    return Object.getOwnPropertyDescriptor(A.prototype, "B").configurable === false;
-  */},
-  res: {
-    babel: {val: false, note_id: "regenerator-decorators-legacy", note_html: "Babel 6 still has no official support decorators, but you can use <a href='https://github.com/loganfsmyth/regenerator-plugin-transform-decorators-legacy'>this plugin</a>."},
-    typescript: true,
-    duktape20: false,
-  }
-},
-{
-  name: 'class properties',
-  category: STAGE2,
-  significance: 'medium',
-  spec: 'https://github.com/jeffmo/es-class-properties',
-  exec: function () {/*
-    class C {
-      x = 'x';
-      static y = 'y';
-    }
-    return new C().x + C.y === 'xy';
-  */},
-  res: {
-    babel: true,
-    tr: true,
-    typescript: true,
-    duktape20: false,
-  }
+  spec: 'http://tc39.github.io/proposal-decorators/',
+  subtests: [
+    {
+      name: 'class decorators',
+      spec: 'https://github.com/wycats/javascript-decorators',
+      exec: function(){/*
+        class A {
+          @nonconf
+          get B() {}
+        }
+        function nonconf(target, name, descriptor) {
+          descriptor.configurable = false;
+          return descriptor;
+        }
+        return Object.getOwnPropertyDescriptor(A.prototype, "B").configurable === false;
+      */},
+      res: {
+        babel: {val: false, note_id: "regenerator-decorators-legacy", note_html: "Babel 6 still has no official support decorators, but you can use <a href='https://github.com/loganfsmyth/regenerator-plugin-transform-decorators-legacy'>this plugin</a>."},
+        typescript: true,
+        firefox2: false,
+        duktape2_0: false,
+      }
+    },
+  ],
 },
 {
   name: 'Realms',
@@ -887,47 +1084,57 @@ exports.tests = [
       });
   */},
   res: {
-    duktape20: false,
+    duktape2_0: false,
   }
 },
 {
-  name: 'object rest properties',
-  significance: 'small',
-  spec: 'https://github.com/sebmarkbage/ecmascript-rest-spread',
-  category: STAGE3,
-  exec: function () {/*
-    var {a, ...rest} = {a: 1, b: 2, c: 3};
-    return a === 1 && rest.a === undefined && rest.b === 2 && rest.c === 3;
-  */},
-  res: {
-    babel: true,
-    typescript: true,
-    jsx: true,
-    chrome58: 'flagged',
-    safaritp: true,
-    webkit: true,
-    duktape20: false,
-  }
-},
-{
-  name: 'object spread properties',
-  category: STAGE3,
+  name: 'object rest/spread properties',
   significance: 'medium',
-  spec: 'https://github.com/sebmarkbage/ecmascript-rest-spread',
-  exec: function () {/*
-    var spread = {b: 2, c: 3};
-    var O = {a: 1, ...spread};
-    return O !== spread && (O.a + O.b + O.c) === 6;
-  */},
-  res: {
-    babel: true,
-    jsx: true,
-    chrome58: 'flagged',
-    typescript: true,
-    safaritp: true,
-    webkit: true,
-    duktape20: false,
-  }
+  category: STAGE3,
+  spec: 'https://github.com/tc39/proposal-object-rest-spread',
+  subtests: [
+    {
+      name: 'object rest properties',
+      exec: function () {/*
+        var {a, ...rest} = {a: 1, b: 2, c: 3};
+        return a === 1 && rest.a === undefined && rest.b === 2 && rest.c === 3;
+      */},
+      res: {
+        babel: true,
+        typescript: true,
+        jsx: true,
+        firefox2: false,
+        firefox55: true,
+        chrome58: 'flagged',
+        chrome60: true,
+        safari11: false,
+        safaritp: true,
+        webkit: true,
+        duktape2_0: false,
+      }
+    },
+    {
+      name: 'object spread properties',
+      exec: function () {/*
+        var spread = {b: 2, c: 3};
+        var O = {a: 1, ...spread};
+        return O !== spread && (O.a + O.b + O.c) === 6;
+      */},
+      res: {
+        babel: true,
+        jsx: true,
+        firefox2: false,
+        firefox55: true,
+        chrome58: 'flagged',
+        chrome60: true,
+        typescript: true,
+        safari11: false,
+        safaritp: true,
+        webkit: false,
+        duktape2_0: false,
+      }
+    },
+  ],
 },
 {
   name: 'String.prototype.at',
@@ -938,10 +1145,11 @@ exports.tests = [
     return 'a𠮷b'.at(1) === '𠮷';
   */},
   res: {
-    babel: true,
+    babel: babel.corejs,
     typescript: typescript.corejs,
     es7shim: true,
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
@@ -957,24 +1165,30 @@ exports.tests = [
         return ' \t \n abc   \t\n'.trimLeft() === 'abc   \t\n';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
         edge12: true,
-        firefox3: false,
+        firefox2: false,
         firefox3_5: true,
         firefox3_6: true,
         firefox4: true,
-        chrome30: true,
-        node012: true,
+        chrome7: true,
+        opera10_10: false,
+        konq4_4: false,
+        konq4_9: true,
+        besen: false,
+        rhino1_7: false,
+        phantom: true,
+        node0_12: true,
         iojs: true,
-        safari51: true,
-        safari9: true,
+        safari3: false,
+        safari4: true,
         safaritp: true,
         webkit: true,
         es7shim: true,
-        android40: true,
-        ios51: true,
-        duktape20: false,
+        android4_0: true,
+        ios5_1: true,
+        duktape2_0: false,
       }
     },
     {
@@ -984,24 +1198,30 @@ exports.tests = [
         return ' \t \n abc   \t\n'.trimRight() === ' \t \n abc';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
         edge12: true,
-        firefox3: false,
+        firefox2: false,
         firefox3_5: true,
         firefox3_6: true,
         firefox4: true,
-        chrome30: true,
-        node012: true,
+        chrome7: true,
+        opera10_10: false,
+        konq4_4: false,
+        konq4_9: true,
+        besen: false,
+        rhino1_7: false,
+        phantom: true,
+        node0_12: true,
         iojs: true,
-        safari51: true,
-        safari9: true,
+        safari3: false,
+        safari4: true,
         safaritp: true,
         webkit: true,
         es7shim: true,
-        android40: true,
-        ios51: true,
-        duktape20: false,
+        android4_0: true,
+        ios5_1: true,
+        duktape2_0: false,
       }
     },
     {
@@ -1010,9 +1230,10 @@ exports.tests = [
         return ' \t \n abc   \t\n'.trimStart() === 'abc   \t\n';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1021,9 +1242,10 @@ exports.tests = [
         return ' \t \n abc   \t\n'.trimEnd() === ' \t \n abc';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     }
   ]
@@ -1041,6 +1263,9 @@ exports.tests = [
       return typeof global === 'object' && global && global === actualGlobal && !global.lacksGlobal && global.__system_global_test__ === 42;
     */},
     res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+      firefox2: false,
       firefox53: {
         val: false,
         note_id: 'ffox-global-property',
@@ -1057,15 +1282,15 @@ exports.tests = [
         note_id: 'wk-global-property',
         note_html: 'The feature was disabled due to <a href="https://bugs.webkit.org/show_bug.cgi?id=165171">compatibility issues</a>.',
       },
-      node010: true,
-      node012: true,
+      node0_10: true,
+      node0_12: true,
       node4: true,
       node6: true,
-      node65: true,
+      node6_5: true,
       node7: true,
-      node76: true,
-      duktape20: false,
-      duktape21: true,
+      node7_6: true,
+      duktape2_0: false,
+      duktape2_1: true,
     }
   }, {
     name: '"global" global property has correct property descriptor',
@@ -1080,6 +1305,9 @@ exports.tests = [
       return descriptor.value === actualGlobal && !descriptor.enumerable && descriptor.configurable && descriptor.writable;
     */},
     res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+      firefox2: false,
       firefox53: {
         val: false,
         note_id: 'ffox-global-property',
@@ -1096,75 +1324,23 @@ exports.tests = [
         note_id: 'wk-global-property',
         note_html: 'The feature was disabled due to <a href="https://bugs.webkit.org/show_bug.cgi?id=165171">compatibility issues</a>.',
       },
-      node010: false,
-      node012: false,
+      node0_10: false,
+      node0_12: false,
       node4: false,
       node6: false,
-      node65: false,
+      node6_5: false,
       node7: false,
-      node76: false,
-      duktape20: false,
-      duktape21: true,
+      node7_6: false,
+      duktape2_0: false,
+      duktape2_1: true,
     }
   }]
-},
-{
-  name: 'Math methods for 64-bit integers',
-  category: STAGE1,
-  significance: 'tiny',
-  spec: 'https://gist.github.com/BrendanEich/4294d5c212a6d2254703',
-  subtests: [
-    {
-      name: 'Math.iaddh',
-      exec: function(){/*
-        return Math.iaddh(0xffffffff, 1, 1, 1) === 3;
-      */},
-      res: {
-        babel: true,
-        typescript: typescript.corejs,
-        duktape20: false,
-      }
-    },
-    {
-      name: 'Math.isubh',
-      exec: function(){/*
-        return Math.isubh(0, 4, 1, 1) === 2;
-      */},
-      res: {
-        babel: true,
-        typescript: typescript.corejs,
-        duktape20: false,
-      }
-    },
-    {
-      name: 'Math.imulh',
-      exec: function(){/*
-        return Math.imulh(0xffffffff, 7) === -1;
-      */},
-      res: {
-        babel: true,
-        typescript: typescript.corejs,
-        duktape20: false,
-      }
-    },
-    {
-      name: 'Math.umulh',
-      exec: function(){/*
-        return Math.umulh(0xffffffff, 7) === 6;
-      */},
-      res: {
-        babel: true,
-        typescript: typescript.corejs,
-        duktape20: false,
-      }
-    },
-  ]
 },
 {
   name: 'Observable',
   category: STAGE1,
   significance: 'medium',
-  spec: 'https://github.com/zenparsing/es-observable',
+  spec: 'https://github.com/tc39/proposal-observable',
   'subtests': [
     {
       name: 'basic support',
@@ -1172,9 +1348,10 @@ exports.tests = [
         return typeof Observable !== 'undefined';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1183,9 +1360,10 @@ exports.tests = [
         return typeof Symbol.observable === 'symbol';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1194,9 +1372,10 @@ exports.tests = [
         return 'subscribe' in Observable.prototype;
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1215,9 +1394,10 @@ exports.tests = [
         return nonCallableCheckPassed && primitiveCheckPassed && newCheckPassed;
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1227,9 +1407,10 @@ exports.tests = [
         return 'forEach' in Observable.prototype && o.forEach(function(e){return true}) instanceof Promise;
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1239,9 +1420,10 @@ exports.tests = [
         return Symbol.observable in Observable.prototype && o[Symbol.observable]() === o;
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1250,9 +1432,10 @@ exports.tests = [
         return Observable.of(1, 2, 3) instanceof Observable;
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1261,9 +1444,10 @@ exports.tests = [
         return (Observable.from([1,2,3,4]) instanceof Observable) && (Observable.from(new Set([1, 2, 3])) instanceof Observable);
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     }
   ]
@@ -1287,9 +1471,10 @@ exports.tests = [
       && c === 'ab';
   */},
   res: {
-    babel: true,
+    babel: babel.corejs,
     typescript: typescript.corejs,
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
@@ -1305,7 +1490,8 @@ exports.tests = [
         return f();
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1314,7 +1500,8 @@ exports.tests = [
         return (_ => function.count)(1, 2, 3) === 3;
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1328,7 +1515,8 @@ exports.tests = [
           && arr[2] === 3;
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     }
   ]
@@ -1354,7 +1542,8 @@ exports.tests = [
   */},
   res : {
     typescript: true,
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
@@ -1373,7 +1562,8 @@ exports.tests = [
     })(2);
   */},
   res : {
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
@@ -1389,11 +1579,12 @@ exports.tests = [
     return works && weakref.get() === undefined;
   */},
   res : {
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
-  name: 'Async iteration',
+  name: 'Asynchronous Iterators',
   category: STAGE3,
   significance: 'medium',
   spec: 'https://github.com/tc39/proposal-async-iteration',
@@ -1412,8 +1603,9 @@ exports.tests = [
       */},
       res: {
         babel: true,
+        firefox2: false,
         firefox55: firefox.nightly,
-        duktape20: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1440,15 +1632,16 @@ exports.tests = [
       */},
       res: {
         babel: true,
+        firefox2: false,
         firefox55: firefox.nightly,
-        duktape20: false,
+        duktape2_0: false,
       }
     }
   ]
 },
 {
   name: 'RegExp named capture groups',
-  spec: 'https://github.com/goyakin/es-regexp-named-groups',
+  spec: 'https://github.com/tc39/proposal-regexp-named-groups',
   category: STAGE3,
   significance: 'small',
   exec: function(){/*
@@ -1462,11 +1655,50 @@ exports.tests = [
       && result.groups[3] === '11';
   */},
   res : {
-    duktape20: false,
+    ie11: false,
+    firefox2: false,
+    chrome61: "flagged",
+    duktape2_0: false,
   }
 },
 {
-  name: 'RegExp lookbehind',
+  name: 's (dotAll) flag for regular expressions',
+  spec: 'https://github.com/tc39/proposal-regexp-dotall-flag',
+  category: STAGE3,
+  significance: 'small',
+  exec: function(){/*
+    const regex = /foo.bar/s;
+    return regex.test('foo\nbar');
+  */},
+  res : {
+    es6tr: null,
+    tr: null,
+    babel: null,
+    closure: null,
+    jsx: null,
+    typescript: null,
+    es6shim: null,
+    konq414: null,
+    ie7: null,
+    ie10: false,
+    firefox1: null,
+    firefox2: false,
+    opera12: null,
+    chrome1: null,
+    chrome61: "flagged",
+    chrome62: true,
+    safari1: null,
+    rhino1_7: null,
+    xs6: null,
+    jxa: null,
+    node0_10: null,
+    duktape2_0: null,
+    android1_5: null,
+    ios4: null,
+  },
+},
+{
+  name: 'RegExp Lookbehind Assertions',
   spec: 'https://github.com/tc39/proposal-regexp-lookbehind',
   category: STAGE3,
   significance: 'small',
@@ -1475,8 +1707,11 @@ exports.tests = [
            !/(?<=a)b/.test('b');
   */},
   res : {
+    ie11: false,
+    firefox2: false,
     chrome50: "flagged",
-    duktape20: false,
+    chrome62: true,
+    duktape2_0: false,
   }
 },
 {
@@ -1489,8 +1724,10 @@ exports.tests = [
     return regexGreekSymbol.test('π');
   */},
   res: {
+    ie11: false,
+    firefox2: false,
     chrome59: "flagged",
-    duktape20: false,
+    duktape2_0: false,
   }
 },
 {
@@ -1507,7 +1744,8 @@ exports.tests = [
           && !Reflect.isCallable(class {});
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1518,7 +1756,8 @@ exports.tests = [
           && Reflect.isConstructor(class {});
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     }
   ]
@@ -1535,9 +1774,10 @@ exports.tests = [
         return typeof Reflect.defineMetadata == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1546,9 +1786,10 @@ exports.tests = [
         return typeof Reflect.hasMetadata == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1557,9 +1798,10 @@ exports.tests = [
         return typeof Reflect.hasOwnMetadata == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1568,9 +1810,10 @@ exports.tests = [
         return typeof Reflect.getMetadata == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1579,9 +1822,10 @@ exports.tests = [
         return typeof Reflect.getOwnMetadata == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1590,9 +1834,10 @@ exports.tests = [
         return typeof Reflect.getMetadataKeys == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1601,9 +1846,10 @@ exports.tests = [
         return typeof Reflect.getOwnMetadataKeys == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1612,9 +1858,10 @@ exports.tests = [
         return typeof Reflect.deleteMetadata == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1623,9 +1870,10 @@ exports.tests = [
         return typeof Reflect.metadata == 'function';
       */},
       res: {
-        babel: true,
+        babel: babel.corejs,
         typescript: typescript.corejs,
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     }
   ]
@@ -1642,7 +1890,8 @@ exports.tests = [
         return typeof Zone == 'function';
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1651,7 +1900,8 @@ exports.tests = [
         return 'current' in Zone;
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1660,7 +1910,8 @@ exports.tests = [
         return 'name' in Zone.prototype;
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1669,7 +1920,8 @@ exports.tests = [
         return 'parent' in Zone.prototype;
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1678,7 +1930,8 @@ exports.tests = [
         return typeof Zone.prototype.fork == 'function';
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1687,7 +1940,8 @@ exports.tests = [
         return typeof Zone.prototype.run == 'function';
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
@@ -1696,13 +1950,14 @@ exports.tests = [
         return typeof Zone.prototype.wrap == 'function';
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     }
   ]
 },
 {
-  name: 'frozen realms',
+  name: 'Frozen Realms API',
   category: STAGE1,
   significance: 'medium',
   spec: 'https://github.com/FUDCo/frozen-realms',
@@ -1711,17 +1966,35 @@ exports.tests = [
       && typeof Reflect.Realm.prototype.spawn === 'function';
   */},
   res: {
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
-  name: 'private fields',
-  category: STAGE2,
+  name: 'class fields',
+  category: STAGE3,
   significance: 'medium',
-  spec: 'https://github.com/zenparsing/es-private-fields',
+  spec: 'https://github.com/tc39/proposal-class-fields',
   subtests: [
     {
-      name: 'basic support',
+      name: 'class properties',
+      exec: function () {/*
+        class C {
+          x = 'x';
+          static y = 'y';
+        }
+        return new C().x + C.y === 'xy';
+      */},
+      res: {
+        babel: true,
+        tr: true,
+        typescript: true,
+        firefox2: false,
+        duktape2_0: false,
+      }
+    },
+    {
+      name: 'private fields basic support',
       exec: function () {/*
         class C {
           #x;
@@ -1735,11 +2008,12 @@ exports.tests = [
         return new C(42).x() === 42;
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
     {
-      name: 'initializers',
+      name: 'private fields initializers',
       exec: function () {/*
         class C {
           #x = 42;
@@ -1750,7 +2024,8 @@ exports.tests = [
         return new C().x() === 42;
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       }
     },
   ]
@@ -1767,9 +2042,10 @@ exports.tests = [
     passed = true;
   */},
   res : {
-    babel: true,
+    babel: babel.corejs,
     typescript: typescript.corejs,
-    duktape20: false,
+    firefox2: false,
+    duktape2_0: false,
   }
 },
 {
@@ -1790,7 +2066,8 @@ exports.tests = [
         }(1e6)) === "foo";
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       },
     },
     {
@@ -1812,16 +2089,17 @@ exports.tests = [
         return f(1e6) === "foo" && f(1e6+1) === "bar";
       */},
       res: {
-        duktape20: false,
+        firefox2: false,
+        duktape2_0: false,
       },
     }
   ]
 },
 {
-  name: 'Function.prototype.toString',
+  name: 'Function.prototype.toString revision',
   category: STAGE3,
   significance: 'small',
-  spec: 'https://tc39.github.io/Function-prototype-toString-revision/',
+  spec: 'https://github.com/tc39/Function-prototype-toString-revision',
   mdn: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString',
   subtests: [{
     name: 'functions created with the Function constructor',
@@ -1831,9 +2109,10 @@ exports.tests = [
       return fn + '' === str;
     */},
     res: {
+      firefox2: false,
       firefox54: true,
       chrome59: "flagged",
-      duktape20: false,
+      duktape2_0: false,
     },
   }, {
     name: 'arrows',
@@ -1843,11 +2122,12 @@ exports.tests = [
     */},
     res: {
       node4: true,
+      firefox2: false,
       firefox51: true,
       chrome50: true,
       safari10: true,
       edge13: true,
-      duktape20: false,
+      duktape2_0: false,
     },
   }, {
     name: '[native code]',
@@ -1858,11 +2138,13 @@ exports.tests = [
     res: {
       ie11: true,
       node4: true,
+      firefox2: false,
       firefox45: true,
+      opera10_50: true,
       chrome50: true,
-      safari9: true,
+      safari3_1: true,
       edge13: true,
-      duktape20: true,
+      duktape2_0: true,
     },
   }, {
     name: 'class expression with implicit constructor',
@@ -1872,11 +2154,12 @@ exports.tests = [
     */},
     res: {
       node4: true,
+      firefox2: false,
       firefox55: true,
       chrome50: true,
       safari10: true,
       edge14: true,
-      duktape20: false,
+      duktape2_0: false,
     },
   }, {
     name: 'class expression with explicit constructor',
@@ -1886,11 +2169,12 @@ exports.tests = [
     */},
     res: {
       node4: true,
+      firefox2: false,
       firefox55: true,
       chrome50: true,
       safari10: true,
       edge14: true,
-      duktape20: false,
+      duktape2_0: false,
     },
   }, {
     name: 'unicode escape sequences in identifiers',
@@ -1899,9 +2183,10 @@ exports.tests = [
       return eval('(/\x2A before \x2A/' + str + '/\x2A after \x2A/)') + '' === str;
     */},
     res: {
+      firefox2: false,
       firefox54: true,
       chrome59: "flagged",
-      duktape20: false,
+      duktape2_0: false,
     },
   }, {
     name: 'methods and computed property names',
@@ -1910,12 +2195,528 @@ exports.tests = [
       return eval('({ /\x2A before \x2A/' + str + '/\x2A after \x2A/ }.f)') + '' === str;
     */},
     res: {
+      firefox2: false,
       firefox54: true,
       chrome59: "flagged",
-      duktape20: false,
+      duktape2_0: false,
     },
   }]
 },
+{
+  name: 'Math.signbit',
+  spec: 'http://jfbastien.github.io/papers/Math.signbit.html',
+  category: STAGE1,
+  significance: 'small',
+  exec: function(){/*
+    return Math.signbit(-0) === false
+      && Math.signbit(0) === true
+      && Math.signbit(-42) === false
+      && Math.signbit(42) === true;
+  */},
+  res : {
+    babel: babel.corejs,
+    typescript: typescript.corejs,
+  }
+},
+{
+  name: 'Math extensions proposal',
+  category: STAGE1,
+  significance: 'small',
+  spec: 'https://github.com/rwaldron/proposal-math-extensions',
+  subtests: [{
+    name: 'Math.clamp',
+    exec: function(){/*
+      return Math.clamp(2, 4, 6) === 4
+        && Math.clamp(4, 2, 6) === 4
+        && Math.clamp(6, 2, 4) === 4;
+    */},
+    res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+    },
+  }, {
+    name: 'Math.DEG_PER_RAD',
+    exec: function(){/*
+      return Math.DEG_PER_RAD === Math.PI / 180;
+    */},
+    res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+    },
+  }, {
+    name: 'Math.degrees',
+    exec: function(){/*
+      return Math.degrees(Math.PI / 2) === 90
+        && Math.degrees(Math.PI) === 180;
+    */},
+    res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+    },
+  }, {
+    name: 'Math.fscale',
+    exec: function(){/*
+      return Math.fscale(3, 1, 2, 1, Math.PI) === Math.fround((3 - 1) * (Math.PI - 1) / (2 - 1) + 1);
+    */},
+    res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+    },
+  }, {
+    name: 'Math.RAD_PER_DEG',
+    exec: function(){/*
+      return Math.RAD_PER_DEG === 180 / Math.PI;
+    */},
+    res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+    },
+  }, {
+    name: 'Math.radians',
+    exec: function(){/*
+      return Math.radians(90) === Math.PI / 2
+        && Math.radians(180) === Math.PI;
+    */},
+    res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+    },
+  }, {
+    name: 'Math.scale',
+    exec: function(){/*
+      return Math.scale(0, 3, 5, 8, 10) === 5;
+    */},
+    res: {
+      babel: babel.corejs,
+      typescript: typescript.corejs,
+    },
+  }]
+},
+{
+  name: 'Promise.try',
+  category: STAGE1,
+  significance: 'small',
+  spec: 'https://github.com/tc39/proposal-promise-try',
+  'subtests': [
+    {
+      name: 'basic support',
+      exec: function () {/*
+        return typeof Promise.try === 'function';
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'returns instance of Promise',
+      exec: function () {/*
+        return Promise.try(function () {}) instanceof Promise;
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'call function synchronously',
+      exec: function () {/*
+        var score = 0;
+        Promise.try(function () { score++ });
+        return score === 1;
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'function returns value',
+      exec: function () {/*
+        var score = 0;
+        Promise.try(function() {
+          score++;
+          return 'foo';
+        }).then(function(val) {
+          score += (val === 'foo');
+          if (score === 2) asyncTestPassed();
+        });
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'function throws exception',
+      exec: function () {/*
+        var score = 0;
+        Promise.try(function() {
+          score++;
+          throw 'bar';
+        }).catch(function(err) {
+          score += (err === 'bar');
+          if (score === 2) asyncTestPassed();
+        });
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'function returns fulfilled Promise',
+      exec: function () {/*
+        var score = 0;
+        Promise.try(function() {
+          score++;
+          return Promise.resolve('foo');
+        }).then(function(val) {
+          score += (val === 'foo');
+          if (score === 2) asyncTestPassed();
+        });
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'function returns rejected Promise',
+      exec: function () {/*
+        var score = 0;
+        Promise.try(function() {
+          score++;
+          return Promise.reject('bar');
+        }).catch(function(err) {
+          score += (err === 'bar');
+          if (score === 2) asyncTestPassed();
+        });
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    }
+  ]
+},
+{
+  name: 'Promise.prototype.finally',
+  category: STAGE3,
+  significance: 'medium',
+  spec: 'https://github.com/tc39/proposal-promise-finally',
+  subtests: [
+    {
+      name: 'basic support',
+      exec: function(){/*
+        var p1 = Promise.resolve("foo");
+        var p2 = Promise.reject("bar");
+        var score = 0;
+        function thenFn(result)  {
+          score += (result === "foo");
+          check();
+        }
+        function catchFn(result) {
+          score += (result === "bar");
+          check();
+        }
+        function finallyFn() {
+          score += (arguments.length === 0);
+          check();
+        }
+        p1.then(thenFn);
+        p1.finally(finallyFn);
+        p1.finally(function() {
+          // should return a new Promise
+          score += p1.finally() !== p1;
+          check();
+        });
+        p2.catch(catchFn);
+        p2.finally(finallyFn);
+        function check() {
+          if (score === 5) asyncTestPassed();
+        }
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+        safaritp: true,
+        webkit: false,
+      }
+    },
+    {
+      name: 'don\'t change resolution value',
+      exec: function(){/*
+        var score = 0;
+        function thenFn(result)  {
+          score += (result === "foo");
+          check();
+        }
+        function catchFn(result) {
+          score += (result === "bar");
+          check();
+        }
+        function finallyFn() {
+          score++;
+          check();
+          return Promise.resolve("foobar");
+        }
+        Promise.resolve("foo").finally(finallyFn).then(thenFn);
+        Promise.reject("bar").finally(finallyFn).catch(catchFn);
+        function check() {
+          if (score === 4) asyncTestPassed();
+        }
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+        safaritp: true,
+        webkit: false,
+      }
+    },
+    {
+      name: 'change rejection value',
+      exec: function(){/*
+        var score = 0;
+        Promise
+          .reject("foobar")
+          .finally(function() {
+            return Promise.reject("foo");
+          })
+          .catch(function(result) {
+            score += (result === "foo");
+            check();
+            return Promise.reject("foobar");
+          })
+          .finally(function() {
+            throw new Error('bar');
+          })
+          .catch(function(result) {
+            score += (result.message === "bar");
+            check();
+          });
+        function check() {
+          if (score === 2) asyncTestPassed();
+        }
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+        safaritp: true,
+        webkit: false,
+      }
+    }
+  ]
+},
+{
+  name: 'Array.prototype.{flatten, flatMap}',
+  category: STAGE1,
+  significance: 'medium',
+  spec: 'https://tc39.github.io/proposal-flatMap/',
+  subtests: [
+    {
+      name: 'Array.prototype.flatten',
+      exec: function(){/*
+        return [1, [2, 3], [4, [5, 6]]].flatten().join('') === '12345,6';
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'Array.prototype.flatMap',
+      exec: function(){/*
+        return [{a: 1, b: 2}, {a: 3, b: 4}].flatMap(function (it) {
+          return [it.a, it.b];
+        }).join('') === '1234';
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    }
+  ]
+},
+{
+  name: '`.of` and `.from` on collection constructors',
+  category: STAGE1,
+  significance: 'medium',
+  spec: 'https://github.com/tc39/proposal-setmap-offrom',
+  subtests: [
+    {
+      name: 'Map.of',
+      exec: function(){/*
+        var A = {};
+        var B = {};
+        var C = Map.of([A, 1], [B, 2]);
+        return C.get(A) + C.get(B) === 3;
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'Map.from',
+      exec: function(){/*
+        var A = {};
+        var B = {};
+        var C = Map.from([[A, 1], [B, 2]], function (it) {
+          return [it[0], it[1] + 1];
+        });
+        return C.get(A) + C.get(B) === 5;
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'Set.of',
+      exec: function(){/*
+        var A = {};
+        var B = {};
+        var C = Set.of(A, B);
+        return C.has(A) + C.has(B);
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'Set.from',
+      exec: function(){/*
+        var C = Set.from([1, 2], function (it) {
+          return it + 2;
+        });
+        return C.has(3) + C.has(4);
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'WeakMap.of',
+      exec: function(){/*
+        var A = {};
+        var B = {};
+        var C = WeakMap.of([A, 1], [B, 2]);
+        return C.get(A) + C.get(B) === 3;
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'WeakMap.from',
+      exec: function(){/*
+        var A = {};
+        var B = {};
+        var C = WeakMap.from([[A, 1], [B, 2]], function (it) {
+          return [it[0], it[1] + 1];
+        });
+        return C.get(A) + C.get(B) === 5;
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'WeakSet.of',
+      exec: function(){/*
+        var A = {};
+        var B = {};
+        var C = WeakSet.of(A, B);
+        return C.has(A) + C.has(B);
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+    {
+      name: 'WeakSet.from',
+      exec: function(){/*
+        var A = {};
+        var B = {};
+        var C = WeakSet.from([A, B]);
+        return C.has(A) + C.has(B);
+      */},
+      res: {
+        babel: babel.corejs,
+        typescript: typescript.corejs,
+      }
+    },
+  ]
+},
+{
+  name: 'optional catch binding',
+  category: STAGE3,
+  significance: 'tiny',
+  spec: 'https://tc39.github.io/proposal-optional-catch-binding/',
+  subtests: [
+    {
+      name: 'basic',
+      exec: function(){/*
+        try {
+          throw new Error();
+        }
+        catch {
+          return true;
+        }
+        return false;
+      */},
+      res: {
+        safaritp: true,
+        webkit: true
+      },
+    },
+    {
+      name: 'await',
+      exec: function(){/*
+        (async function (){
+          try {
+            await Promise.reject();
+          }
+          catch {
+            asyncTestPassed();
+          }
+        })();
+      */},
+      res: {
+        safaritp: true,
+        webkit: true
+      },
+    },
+    {
+      name: 'yield',
+      exec: function(){/*
+        function *foo() {
+          try {
+            yield;
+            throw new Error();
+          }
+          catch {
+            return true;
+          }
+        }
+
+        var it = foo();
+        it.next();
+        return it.next().value;
+      */},
+      res: {
+        safaritp: true,
+        webkit: true
+      }
+    }
+  ]
+}
 ];
 
 //Shift annex B features to the bottom
